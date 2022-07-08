@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:used_market/route/app_pages.dart';
 import 'package:used_market/route/app_routes.dart';
+import 'package:used_market/util/SetupLocator.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 

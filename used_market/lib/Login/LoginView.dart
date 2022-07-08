@@ -89,7 +89,9 @@ class LoginView extends GetView<LoginViewModel> {
       color: type == "Kakao" ? Colors.yellow : Colors.black,
       margin: EdgeInsets.only(top: 14, left: 16, right: 16),
       child: OutlineButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.requestTodoItems();
+        },
         child: Text(
           "로그인하기",
           style: TextStyle(
