@@ -3,6 +3,16 @@ import 'package:get/get.dart';
 import 'package:used_market/Login/LoginViewModel.dart';
 
 class LoginView extends GetView<LoginViewModel> {
+
+  final idTextEditController = TextEditingController();
+  final pwTextEditController = TextEditingController();
+
+  @override
+  void dispose() {
+      idTextEditController.dispose();
+      pwTextEditController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,6 +118,7 @@ class LoginView extends GetView<LoginViewModel> {
           top: placeholder == "Email" ? 90 : 19, left: 16, right: 16),
       height: 48,
       child: TextField(
+        controller: placeholder == "Email" ? idTextEditController : pwTextEditController,
         decoration: InputDecoration(
           hintText: placeholder ?? "",
           hintStyle: TextStyle(fontSize: 16),
@@ -115,6 +126,14 @@ class LoginView extends GetView<LoginViewModel> {
             borderSide: BorderSide(width: 0.1, color: Colors.grey),
           ),
         ),
+        onChanged: (text) {
+          if (placeholder == "Email") {
+            controller.emailStr = text.obs;
+          } else {
+            controller.passwordStr = text.obs;
+          }
+
+        },
       ),
     );
   }

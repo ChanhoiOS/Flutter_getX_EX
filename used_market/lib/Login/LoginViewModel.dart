@@ -5,7 +5,8 @@ import 'package:used_market/Login/LoginModel/LoginModel.dart';
 import 'package:used_market/Login/LoginView.dart';
 
 class LoginViewModel extends GetxController {
-  RxString? welcomeString = "Login".obs;
+  RxString? emailStr = "email".obs;
+  RxString? passwordStr = "password".obs;
 
   late RestClient _restClient;
 
@@ -13,14 +14,14 @@ class LoginViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
-    welcomeString?.value = "33";
     _restClient = GetIt.instance<RestClient>();
   }
 
   Future<LoginModel?> requestTodoItems() async {
-
+    print("email: ${emailStr?.value}");
+    print("email: ${passwordStr?.value}");
     try{
-      final reqBody = EmailPW(email: "test2",password: "1234");
+      final reqBody = EmailPW(email: emailStr?.value,password: passwordStr?.value);
       final data = await _restClient.postLogin(reqBody);
       print("data: ${data}");
       //LoginModel loginItem = LoginModel.toJson(data);
