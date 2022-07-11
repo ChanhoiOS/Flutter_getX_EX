@@ -17,11 +17,19 @@ class LoginViewModel extends GetxController {
     _restClient = GetIt.instance<RestClient>();
   }
 
-  Future<LoginModel> requestTodoItems() async {
-    final data = await _restClient.postLogin(LoginParam(email: "test", password: "1234"));
-    LoginModel loginItem = LoginModel.fromJson(data);
+  Future<LoginModel?> requestTodoItems() async {
 
-    return loginItem;
+    try{
+      final reqBody = EmailPW(email: "test2",password: "1234");
+      final data = await _restClient.postLogin(reqBody);
+      print("data: ${data}");
+      //LoginModel loginItem = LoginModel.toJson(data);
+      return null;
+    }catch(e){
+      print("@@@@@");
+      print(e);
+      print("@@@@@");
+    }
   }
 
   @override

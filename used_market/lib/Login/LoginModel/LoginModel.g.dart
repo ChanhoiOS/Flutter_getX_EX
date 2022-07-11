@@ -6,6 +6,16 @@ part of 'LoginModel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+EmailPW _$EmailPWFromJson(Map<String, dynamic> json) => EmailPW(
+      email: json['email'] as String?,
+      password: json['password'] as String?,
+    );
+
+Map<String, dynamic> _$EmailPWToJson(EmailPW instance) => <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
 LoginModel _$LoginModelFromJson(Map<String, dynamic> json) => LoginModel(
       statusCode: json['statusCode'] as int?,
       msg: json['msg'] as String?,
@@ -45,17 +55,6 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'accessToken': instance.accessToken,
     };
 
-LoginParam _$LoginParamFromJson(Map<String, dynamic> json) => LoginParam(
-      email: json['email'] as String?,
-      password: json['password'] as String?,
-    );
-
-Map<String, dynamic> _$LoginParamToJson(LoginParam instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-    };
-
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -70,19 +69,19 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<LoginParam> postLogin(loginParam) async {
+  Future<LoginModel> postLogin(emailpw) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(loginParam.toJson());
+    _data.addAll(emailpw.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<LoginParam>(
+        _setStreamType<LoginModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/api/user/login',
+                .compose(_dio.options, 'api/user/login',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LoginParam.fromJson(_result.data!);
+    final value = LoginModel.fromJson(_result.data!);
     return value;
   }
 

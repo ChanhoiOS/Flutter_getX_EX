@@ -32,7 +32,7 @@ class DioConfig {
   static Map<String, String> getHeader(ResourceType resourceType) {
     switch (resourceType) {
       case ResourceType.noGzipApplied:
-        return getGzipAppliedHeaders();
+        return getDioHeaders();
       case ResourceType.gzipApplied:
       default:
         return getDioHeaders();
@@ -42,15 +42,15 @@ class DioConfig {
   static Map<String, String> getDioHeaders() {
     return {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      // "Accept": "application/json",
     };
   }
 
   static Map<String, String> getGzipAppliedHeaders() {
     return {
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Content-Encoding": "gzip"
+      // "Accept": "application/json",
+      // "Content-Encoding": "gzip"
     };
   }
 }

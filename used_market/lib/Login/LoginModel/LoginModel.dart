@@ -8,9 +8,22 @@ part 'LoginModel.g.dart';
 abstract class RestClient {
     factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-    @POST('/api/user/login')
-    Future<LoginParam> postLogin(@Body() LoginParam loginParam);
+    @POST('api/user/login')
+    Future<LoginModel> postLogin(@Body() EmailPW emailpw);
 }
+
+@JsonSerializable()
+class EmailPW {
+    String? email;
+    String? password;
+
+    EmailPW({this.email, this.password});
+
+    factory EmailPW.fromJson(dynamic json) => _$EmailPWFromJson(json);
+
+    Map<String, dynamic> toJson() => _$EmailPWToJson(this);
+}
+
 
 @JsonSerializable()
 class LoginModel {
@@ -50,17 +63,4 @@ class Data {
   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
   Map<String, dynamic> toJson() => _$DataToJson(this);
-}
-
-
-@JsonSerializable()
-class LoginParam {
-  String? email;
-  String? password;
-
-  LoginParam({this.email, this.password});
-
-  factory LoginParam.fromJson(Map<String, dynamic> json) => _$LoginParamFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LoginParamToJson(this);
 }
