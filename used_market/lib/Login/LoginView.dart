@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:used_market/Login/LoginViewModel.dart';
+import 'package:used_market/route/app_routes.dart';
 
 class LoginView extends GetView<LoginViewModel> {
 
@@ -101,6 +102,7 @@ class LoginView extends GetView<LoginViewModel> {
       child: OutlineButton(
         onPressed: () {
           controller.requestTodoItems();
+          Get.toNamed(AppRoutes.HomeView);
         },
         child: Text(
           "로그인하기",

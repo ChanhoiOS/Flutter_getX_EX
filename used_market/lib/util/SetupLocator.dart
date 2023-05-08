@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:used_market/Home/HomeModel/HomeModel.dart';
 import 'package:used_market/Login/LoginModel/LoginModel.dart';
 // import 'package:getx_flutter_basic/core/network/api_client.dart';
 // import 'package:getx_flutter_basic/core/network/dio_configuration.dart';
@@ -64,5 +65,6 @@ void setupLocator() {
       instanceName: ResourceType.gzipApplied.toString());
   locator.registerSingleton<RestClient>(RestClient(
       locator<Dio>(instanceName: ResourceType.noGzipApplied.toString())));
-
+  locator.registerSingleton<HomeClient>(HomeClient(
+      locator<Dio>(instanceName: ResourceType.noGzipApplied.toString())));
 }

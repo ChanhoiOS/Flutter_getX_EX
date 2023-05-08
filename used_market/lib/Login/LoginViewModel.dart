@@ -23,7 +23,7 @@ class LoginViewModel extends GetxController {
     try{
       final reqBody = EmailPW(email: emailStr?.value,password: passwordStr?.value);
       final data = await _restClient.postLogin(reqBody);
-      print("data: ${data}");
+      print("data: ${data.data?.userId}");
       //LoginModel loginItem = LoginModel.toJson(data);
       return null;
     }catch(e){
